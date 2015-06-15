@@ -23,6 +23,7 @@ public class Note {
 	
 	/* CLASS METHODS */
 	
+	@Override
 	public String toString() {
 		return getKey().concat(getOctave());
 	}
