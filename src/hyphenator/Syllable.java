@@ -11,7 +11,9 @@ public class Syllable {
 	/* GETTERS & SETTERS */
 	
 	public String getSyllable() {
-		return syllable;
+		if(syllableExists())
+			return syllable;
+		return null;
 	}
 	
 	public void setSyllable(String syllable) {
@@ -39,7 +41,7 @@ public class Syllable {
 	}
 
 	private boolean syllableExists() {
-		if(syllable != null)
+		if((syllable != null) && (syllable.length() > 0)) 
 			return true;
 		return false;
 	}
@@ -48,6 +50,19 @@ public class Syllable {
 		if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u')
 			return true;
 		return false;
+	}
+	
+	public String firstLetter() {
+		if(syllableExists())
+			return syllable.substring(0, 1);
+		return null;
+	}
+	
+	public boolean endsWithConsonant() {
+		if(syllableExists()) 
+			if(!isVowel(syllable.charAt(getSyllableLength()-1)))
+				return true;
+		return false;	
 	}
 
 }

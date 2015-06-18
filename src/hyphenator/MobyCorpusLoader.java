@@ -91,9 +91,16 @@ public class MobyCorpusLoader {
 	}
 	
 	public List<Syllable> split(Text text) {
-		//consulta o dicionario e retorna 
+		List<Syllable> syllabifiedText = new ArrayList<Syllable>();
 		
+		for (String word : text.getOriginalText()) {
+			if(syllableDictionary.containsKey(word))
+				syllabifiedText.addAll(syllableDictionary.get(word));
+			else {
+				//definir criterios de separação
+			}
+		}
 		
-		return new ArrayList<Syllable>();
+		return syllabifiedText;
 	}
 }
