@@ -54,7 +54,7 @@ public class MatchScale {
 		
 		Map<String,Integer> scores = getNoteOccurrences(text);
 		
-		List<Integer> noteScores = selectMostUsedNotes((List<Integer>) scores.values());
+		List<Integer> noteScores = selectMostUsedNotes(new ArrayList<Integer>(scores.values()));
 		
 		for (int i = 0; i < noteScores.size(); i++) {
 			for (String note : scores.keySet()) {
