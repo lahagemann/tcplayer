@@ -1,6 +1,6 @@
 package properties;
 
-public enum Scales {
+public enum ScaleEnum {
 	CMAJ	("C D E F G A B"),
 	GMAJ	("G A B C D E F#"),
 	DMAJ	("D E F# G A B C#"),
@@ -35,8 +35,12 @@ public enum Scales {
 	EbMIN 	("Eb F Gb Ab Bb Cb D"),
 	AbMIN 	("Ab Bb Cb Db Eb Fb G");
 	
-	private String listOfNotes;
-	Scales(String listOfNotes){
-		this.listOfNotes = listOfNotes;
+	private String scale;
+	ScaleEnum(String listOfNotes){
+		this.scale = listOfNotes;
+	}
+	
+	public String getScale() {
+		return this.scale;
 	}
 }

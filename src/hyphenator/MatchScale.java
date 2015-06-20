@@ -6,53 +6,52 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import properties.ScaleEnum;
 
 public class MatchScale {
 	
-	List<Note> text;
+	List<Note> listOfNotes;
 	
-	public MatchScale(List<Note> text) {
-		setText(text);
+	public MatchScale(List<Note> listOfNotes) {
+		setListOfNotes(listOfNotes);
 	}
 	
 	/* GETTERS & SETTERS */
 	
-	public List<Note> getText() {
-		return text;
+	public List<Note> getListOfNotes() {
+		return this.listOfNotes;
 	}
 	
-	public void setText(List<Note> text) {
-		this.text = text;
+	public void setListOfNotes(List<Note> listOfNotes) {
+		this.listOfNotes = listOfNotes;
 	}
 	
 	
 	/* CLASS METHODS */
 	
 	
-	public String match() {
-		List<String> textScale = getAScaleFromText();
+	public String getMatchedScale() {
+		List<String> textScale = getTextScale();
 		
 		int highestMatch = 0;
 		String matchedScale = "";
 		
-		//arrumar essa parte aqui
-		for (String key : properties) {
-			List<String> scale = getScaleFromProperties(key);
-			int match = matchScales(scale, textScale);
+		for (ScaleEnum scale : ScaleEnum.values()) {
+			List<String> parsedScale = parseScale(scale.getScale());
+			int numberOfMatches = compareScales(parsedScale, textScale);
 			
-			if(match > highestMatch) {
-				highestMatch = match;
-				matchedScale = key;
+			if(numberOfMatches > highestMatch) {
+				highestMatch = numberOfMatches;
+				matchedScale = scale.getScale();
 			}
 		}
 		return matchedScale;
 	}
 	
-	//esse método tá zoado e vai ficar a coisa mais feia da terra, se tu puder arrumar 
-	public List<String> getAScaleFromText() {
+	public List<String> getTextScale() {
 		List<String> scale = new ArrayList<String>();
 		
-		Map<String,Integer> scores = getNoteOccurrences(text);
+		Map<String,Integer> scores = getNoteOccurrences(this.listOfNotes);
 		
 		List<Integer> noteScores = selectMostUsedNotes(new ArrayList<Integer>(scores.values()));
 		
@@ -67,9 +66,8 @@ public class MatchScale {
 		return scale;
 	}
 	
-	public List<String> getScaleFromProperties(String key){
-		//fazer a parte que importa as properties
-		return Arrays.asList("properties".split(" "));
+	public List<String> parseScale(String listOfKeys){
+		return Arrays.asList(listOfKeys.split(" "));
 	}
 
 	private List<Integer> selectMostUsedNotes(List<Integer> noteScores) {
@@ -92,7 +90,7 @@ public class MatchScale {
 		return scores;
 	}
 	
-	public int matchScales(List<String> trueScale, List<String> scaleFromText) {
+	public int compareScales(List<String> trueScale, List<String> scaleFromText) {
 		int matches = 0;
 		for (String note : scaleFromText) 
 			if(trueScale.contains(note))
