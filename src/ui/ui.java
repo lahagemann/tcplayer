@@ -76,7 +76,7 @@ public class ui {
 		frmTcplayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton pause = new JButton("");
-		ImageIcon pauseIcon = new ImageIcon("/home/luiza/workspace/player/tcp_tp/media-pause.png");
+		ImageIcon pauseIcon = new ImageIcon(this.getClass().getResource("/resources/media-pause.png"));
 		Image img = pauseIcon.getImage() ;  
 		Image newimg = img.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH ) ;  
 		pauseIcon = new ImageIcon( newimg );
@@ -97,7 +97,7 @@ public class ui {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		ImageIcon playIcon = new ImageIcon("/home/luiza/workspace/player/tcp_tp/media-play.png");
+		ImageIcon playIcon = new ImageIcon(this.getClass().getResource("/resources/media-play.png"));
 		Image playImg = playIcon.getImage() ;  
 		Image newPlayImg = playImg.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH ) ;  
 		playIcon = new ImageIcon( newPlayImg );
@@ -112,7 +112,7 @@ public class ui {
 		frmTcplayer.getContentPane().add(play);
 		
 		JButton stop = new JButton("");
-		ImageIcon stopIcon = new ImageIcon("/home/luiza/workspace/player/tcp_tp/media-stop.png");
+		ImageIcon stopIcon = new ImageIcon(this.getClass().getResource("/resources/media-stop.png"));
 		Image stopImg = stopIcon.getImage() ;  
 		Image newStopImg = stopImg.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH ) ;  
 		stopIcon = new ImageIcon( newStopImg );
