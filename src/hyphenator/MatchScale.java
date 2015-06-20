@@ -42,7 +42,7 @@ public class MatchScale {
 			
 			if(numberOfMatches > highestMatch) {
 				highestMatch = numberOfMatches;
-				matchedScale = scale.getScale();
+				matchedScale = scale.getNameOfScale();
 			}
 		}
 		return matchedScale;
