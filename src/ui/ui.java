@@ -132,7 +132,7 @@ public class ui {
 		frmTcplayer.getContentPane().add(textPane);
 		
 		JButton loadFile = new JButton("load");
-		loadFile.setBounds(278, 93, 100, 21);
+		loadFile.setBounds(278, 93, 100, 21);	
 		frmTcplayer.getContentPane().add(loadFile);
 		
 		JLabel lblTcplayer = new JLabel("TCPLAYER");
