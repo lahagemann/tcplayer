@@ -1,45 +1,21 @@
 package ui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
-import java.awt.Button;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Image;
-
-import javax.swing.Box;
-import javax.swing.JButton;
-
-import java.awt.Rectangle;
-
-import javax.swing.JSplitPane;
-import javax.swing.JInternalFrame;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
-import java.awt.GridLayout;
-
-import javax.swing.BoxLayout;
-
-import java.awt.Dimension;
-
-import javax.swing.JTextPane;
-import javax.swing.border.LineBorder;
-
 import java.awt.Color;
-
-import javax.swing.JLabel;
-
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
-
-import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class ui {
 
@@ -134,7 +110,8 @@ public class ui {
 		frmTcplayer.getContentPane().add(file);
 		
 		JButton loadFile = new JButton("load");
-		loadFile.setBounds(279, 74, 100, 21);
+		loadFile.setBounds(278, 93, 100, 21);	
+
 		frmTcplayer.getContentPane().add(loadFile);
 		
 		JLabel lblTcplayer = new JLabel("TCPLAYER");
