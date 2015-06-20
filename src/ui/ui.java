@@ -38,6 +38,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ui {
 
@@ -126,19 +128,23 @@ public class ui {
 		stop.setBounds(262, 177, 50, 50);
 		frmTcplayer.getContentPane().add(stop);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBorder(new LineBorder(new Color(0, 0, 0)));
-		textPane.setBounds(66, 93, 200, 21);
-		frmTcplayer.getContentPane().add(textPane);
+		JTextPane file = new JTextPane();
+		file.setBorder(new LineBorder(new Color(0, 0, 0)));
+		file.setBounds(66, 74, 200, 21);
+		frmTcplayer.getContentPane().add(file);
 		
 		JButton loadFile = new JButton("load");
-		loadFile.setBounds(278, 93, 100, 21);
+		loadFile.setBounds(279, 74, 100, 21);
 		frmTcplayer.getContentPane().add(loadFile);
 		
 		JLabel lblTcplayer = new JLabel("TCPLAYER");
 		lblTcplayer.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblTcplayer.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblTcplayer.setBounds(163, 12, 174, 50);
+		lblTcplayer.setBounds(160, 12, 174, 50);
 		frmTcplayer.getContentPane().add(lblTcplayer);
+		
+		JButton btnCreate = new JButton("create music!");
+		btnCreate.setBounds(66, 107, 313, 25);
+		frmTcplayer.getContentPane().add(btnCreate);
 	}
 }
