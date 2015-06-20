@@ -3,7 +3,7 @@ package hyphenator_test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import java.awt.List;
+import java.util.List;
 import hyphenator.Note;
 import hyphenator.MatchScale;
 import java.util.ArrayList;
