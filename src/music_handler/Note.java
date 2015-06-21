@@ -1,4 +1,4 @@
-package hyphenator;
+package music_handler;
 
 public class Note {
 	

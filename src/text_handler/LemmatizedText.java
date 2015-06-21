@@ -1,6 +1,7 @@
-package hyphenator;
+package text_handler;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +15,7 @@ public class LemmatizedText extends Text {
 	private List<String> lemmatizedText;
 
 
-	public LemmatizedText(String originalFile) {
+	public LemmatizedText(String originalFile) throws IOException {
 		super(originalFile);
 		setLemmatizedFilePath(originalFile);
 		lemmatize(originalFile);
@@ -53,21 +54,16 @@ public class LemmatizedText extends Text {
 		return positiveness;
 	}
 	
-	public void setPositiveness() {
+	public void setPositiveness() throws IOException {
 		extractEmotion();
 		extractPositivenessFromFile();
 	}
 	
 	/* CLASS METHODS */
 	
-	private void lemmatize(String path) {
-		try {
+	private void lemmatize(String path) throws IOException {
 			Process p = Runtime.getRuntime().exec("python lemmatizer.py "+ path);
 			//não lembro o que tem que fazer mais
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	private void loadFile() {
@@ -84,18 +80,12 @@ public class LemmatizedText extends Text {
 		}
 	}
 	
-	private void extractEmotion() {
-		try {
+	private void extractEmotion() throws IOException {
 			Process p = Runtime.getRuntime().exec("python extract_emotion.py "+ lemmatizedFilePath);
 			//não lembro o que tem que fazer mais
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-	private void extractPositivenessFromFile() {
-		try {
+	private void extractPositivenessFromFile() throws IOException {
 			BufferedReader file = new BufferedReader(new FileReader(emotionFilePath));
 			int positives = 0;
 			int negatives = 0;
@@ -115,12 +105,5 @@ public class LemmatizedText extends Text {
 				this.positiveness = "positive";
 			else
 				this.positiveness = "negative";
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-	
-
 }

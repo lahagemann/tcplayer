@@ -1,4 +1,4 @@
-package hyphenator;
+package text_handler;
 
 public class Syllable {
 	

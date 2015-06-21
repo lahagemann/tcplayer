@@ -1,4 +1,4 @@
-package hyphenator;
+package text_handler;
 
 import java.util.ArrayList;
 import java.util.List;

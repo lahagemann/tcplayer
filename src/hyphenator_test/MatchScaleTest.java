@@ -1,13 +1,17 @@
 package hyphenator_test;
 
 import static org.junit.Assert.*;
+import music_handler.Note;
+
 import org.junit.Test;
 
 import java.util.List;
-import hyphenator.Note;
+
 import hyphenator.MatchScale;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import properties.ScaleEnum;
 
 

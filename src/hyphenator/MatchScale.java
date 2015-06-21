@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import music_handler.Note;
 import properties.ScaleEnum;
 
 public class MatchScale {
