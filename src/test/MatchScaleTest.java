@@ -1,28 +1,14 @@
-package hyphenator_test;
+package test;
 
 import static org.junit.Assert.*;
-<<<<<<< HEAD
-=======
 import music_handler.MatchScale;
 import music_handler.Note;
->>>>>>> e0dad1df85a7a2497f229a37ecf918676420722e
 
 import org.junit.Test;
 
 import java.util.List;
-<<<<<<< HEAD
-
-import hyphenator.Note;
-import hyphenator.MatchScale;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-=======
-import java.util.ArrayList;
-import java.util.Arrays;
->>>>>>> e0dad1df85a7a2497f229a37ecf918676420722e
 
 import properties.ScaleEnum;
 

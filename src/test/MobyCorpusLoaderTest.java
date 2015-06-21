@@ -1,4 +1,4 @@
-package hyphenator_test;
+package test;
 
 import static org.junit.Assert.*;
 

@@ -20,7 +20,7 @@ public class Note {
 	}
 
 	public String getKey() {
-		return key.concat(intonation);
+		return this.key;
 	}
 
 	public void setKey(String key) {
@@ -28,15 +28,19 @@ public class Note {
 	}
 	
 	public String getIntonation() {
-		return intonation;
+		return this.intonation;
 	}
 	
 	public void setIntonation(String intonation) {
 		this.intonation = intonation;
 	}
 
+	public String getKeyWithIntonation(){
+		return this.getKey() + this.getIntonation();
+	}
+	
 	public int getOctave() {
-		return octave;
+		return this.octave;
 	}
 
 	public void setOctave(int octave) {
@@ -52,7 +56,7 @@ public class Note {
 	
 	@Override
 	public String toString() {
-		return getKey()+octave;
+		return this.getKey() + this.getIntonation() + this.getOctave();
 	}
 
 

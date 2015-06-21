@@ -81,12 +81,12 @@ public class MatchScale {
 		Map<String,Integer> scores = new HashMap<String,Integer>();
 		
 		for (Note note : text) {
-			if(scores.containsKey(note.getKey())){
-				Integer oldValue = scores.get(note.getKey());
-				scores.put(note.getKey(), oldValue++);
+			if(scores.containsKey(note.getKeyWithIntonation())){
+				Integer oldValue = scores.get(note.getKeyWithIntonation());
+				scores.put(note.getKeyWithIntonation(), oldValue++);
 			}
 			else
-				scores.put(note.getKey(), 1);
+				scores.put(note.getKeyWithIntonation(), 1);
 		}
 		return scores;
 	}
