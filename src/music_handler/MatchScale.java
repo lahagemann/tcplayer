@@ -9,6 +9,9 @@ import java.util.Map;
 
 import properties.ScaleEnum;
 
+
+
+
 public class MatchScale {
 	
 	List<Note> listOfNotes;

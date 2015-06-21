@@ -29,7 +29,7 @@ public enum AlphabetEnum {
 		this.correspondent = correspondent;
 	}
 	
-	public String getKey(){
+	public String getKey() {
 		return this.key;
 	}
 	

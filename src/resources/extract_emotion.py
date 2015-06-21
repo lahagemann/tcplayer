@@ -1,7 +1,7 @@
 # *-* coding: utf-8 *-*
 import nltk
 import sys
-import string
+import re
 import os
 from nltk.corpus import sentiwordnet as swn
 
@@ -14,7 +14,9 @@ def extract_emotion(argv):
 	filename = filepath[len(filepath)-1]
         with open(output_directory+filename+'.emotion','w') as output:
             for line in infile:
-                if not string.punctuation in line:
+                match = re.findall(r'\w', line.strip())
+
+                if match:
                     pos_senses = 0
                     neg_senses = 0 
 
