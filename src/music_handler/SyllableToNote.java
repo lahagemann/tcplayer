@@ -2,6 +2,7 @@ package music_handler;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import properties.AlphabetEnum;
 import text_handler.text.Syllable;
 
