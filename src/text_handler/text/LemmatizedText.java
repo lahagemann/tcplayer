@@ -17,11 +17,11 @@ public class LemmatizedText extends Text {
 
 	public LemmatizedText(String originalFile) throws IOException {
 		super(originalFile);
-		setLemmatizedFilePath(originalFile);
-		lemmatize(originalFile);
-		setLemmatizedText();
-		setEmotionFilePath(lemmatizedFilePath);
-		setPositiveness();
+//		setLemmatizedFilePath(originalFile);
+//		lemmatize(originalFile);
+//		setLemmatizedText();
+//		setEmotionFilePath(lemmatizedFilePath);
+//		setPositiveness();
 	}
 
 	/* GETTERS & SETTERS */
@@ -54,16 +54,18 @@ public class LemmatizedText extends Text {
 		return positiveness;
 	}
 	
-	public void setPositiveness() throws IOException {
+	public void setPositiveness() throws IOException, InterruptedException {
 		extractEmotion();
 		extractPositivenessFromFile();
 	}
 	
 	/* CLASS METHODS */
 	
-	private void lemmatize(String path) throws IOException {
-			Process p = Runtime.getRuntime().exec("python lemmatizer.py "+ path);
-			//não lembro o que tem que fazer mais
+	private void lemmatize(String path) throws IOException, InterruptedException {
+		String scriptPath = this.getClass().getResource("/resources/lemmatizer.py").toString().split("\\:")[1];
+		String command = "python "+scriptPath+" "+System.getProperty("user.dir")+"/data/text/ " + path;
+		Process p = Runtime.getRuntime().exec(command);
+		p.waitFor();	
 	}
 	
 	private void loadFile() {
@@ -80,9 +82,11 @@ public class LemmatizedText extends Text {
 		}
 	}
 	
-	private void extractEmotion() throws IOException {
-			Process p = Runtime.getRuntime().exec("python extract_emotion.py "+ lemmatizedFilePath);
-			//não lembro o que tem que fazer mais
+	private void extractEmotion() throws IOException, InterruptedException {
+		String scriptPath = this.getClass().getResource("/resources/extract_emotion.py").toString().split("\\:")[1];
+		String command = "python "+scriptPath+" "+System.getProperty("user.dir")+"/data/text/ " + lemmatizedFilePath;
+		Process p = Runtime.getRuntime().exec(command);
+		p.waitFor();
 	}
 	
 	private void extractPositivenessFromFile() throws IOException {

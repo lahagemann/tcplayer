@@ -9,10 +9,8 @@ def lemmatizer(argv):
 	output_directory = sys.argv[1]
 	wnl = WordNetLemmatizer()
 
-	with open(sys.argv[2], 'r') as input_text:
-		filepath = sys.argv[2].split('/')
-		filename = filepath[len(filepath)-1]
-		with open(output_directory+filename+'.lemmatized', 'w') as output_text:
+	with open(output_directory+sys.argv[2], 'r') as input_text:
+		with open(output_directory+sys.argv[2]+'.lemmatized', 'w') as output_text:
 			for line in input_text:
 				if(line or not line.isspace()):
 					words = re.findall(r"[\w']+|[.,!?;]", line)
