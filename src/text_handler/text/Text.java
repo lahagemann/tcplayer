@@ -1,4 +1,4 @@
-package hyphenator;
+package text_handler.text;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
