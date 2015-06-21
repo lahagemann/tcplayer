@@ -6,11 +6,12 @@ from nltk.corpus import sentiwordnet as swn
 
 def extract_emotion(argv):
     
-    text_directory = sys.argv[1]
-    output_directory = 'data/emotion/'
+    output_directory = sys.argv[1]
     
-    with open(text_directory+sys.argv[2]+'.txt','r') as infile: 
-        with open(output_directory+sys.argv[2]+'.emotion','w') as output:
+    with open(sys.argv[2],'r') as infile: 
+	filepath = sys.argv[2].split('/')
+	filename = filepath[len(filepath)-1]
+        with open(output_directory+filename+'.emotion','w') as output:
         
             for line in infile:
                 pos_senses = 0

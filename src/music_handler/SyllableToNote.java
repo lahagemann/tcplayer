@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import properties.AlphabetEnum;
 import text_handler.text.Syllable;
 
 public class SyllableToNote {
@@ -29,9 +30,7 @@ public class SyllableToNote {
 				return null;
 		}
 		else {
-			//arrumar as properties
-			Properties alphabetCorrespondent = new Properties();
-			String note = alphabetCorrespondent.getProperty(syllable.firstLetter());
+			String note = AlphabetEnum.valueOf(syllable.firstLetter()).getCorrespondent();
 			String intonation = "";
 			if(syllable.endsWithConsonant())
 				intonation = "#";

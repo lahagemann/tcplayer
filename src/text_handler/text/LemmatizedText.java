@@ -1,6 +1,7 @@
 package text_handler.text;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,27 +12,40 @@ public class LemmatizedText extends Text {
 	private String lemmatizedFilePath;
 	private String emotionFilePath;
 	private String positiveness;
+	private String originalFileName;
 	
 	private List<String> lemmatizedText;
 
 
-	public LemmatizedText(String originalFile) throws IOException {
+	public LemmatizedText(String originalFile) throws IOException, InterruptedException {
 		super(originalFile);
-//		setLemmatizedFilePath(originalFile);
-//		lemmatize(originalFile);
-//		setLemmatizedText();
-//		setEmotionFilePath(lemmatizedFilePath);
-//		setPositiveness();
+		setOriginalFileName(originalFile);
+		lemmatize(originalFile);
+		setLemmatizedFilePath(originalFile);
+		setLemmatizedText();
+		setEmotionFilePath(lemmatizedFilePath);
+		setPositiveness();
 	}
 
 	/* GETTERS & SETTERS */
+	
+	public void setOriginalFileName(String path) {
+		String[] pathParts = path.split("/");
+		this.originalFileName = pathParts[pathParts.length-1];
+	}
 	
 	public String getLemmatizedFilePath() {
 		return lemmatizedFilePath;
 	}
 	
 	public void setLemmatizedFilePath(String path) {
-		this.lemmatizedFilePath = path.concat(".lemmatized");
+		File textDirectory = new File(System.getProperty("user.dir")+"/data/text/");
+		if(textDirectory.exists() && textDirectory.isDirectory()) {
+			for (File file : textDirectory.listFiles()) {
+				if(file.getName().contains(this.originalFileName) && file.getName().endsWith(".lemmatized"))
+					this.lemmatizedFilePath = file.getAbsolutePath();
+			}
+		}
 	}
 	
 	public String getEmotionFilePath() {
