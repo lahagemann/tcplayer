@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LemmatizedText extends Text {
@@ -84,10 +85,11 @@ public class LemmatizedText extends Text {
 	private void loadFile() {
 		try {
 			BufferedReader file = new BufferedReader(new FileReader(lemmatizedFilePath));
-			
+			lemmatizedText = new ArrayList<String>();
 			while(file.ready()) {
 				String line = file.readLine();
-				this.lemmatizedText.add(line.trim());
+				if(!line.matches("\\s"))
+					this.lemmatizedText.add(line.trim());
 			}
 			file.close();
 		} catch(IOException e) {
