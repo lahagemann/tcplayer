@@ -1,14 +1,28 @@
 package hyphenator_test;
 
 import static org.junit.Assert.*;
+<<<<<<< HEAD
+=======
 import music_handler.MatchScale;
 import music_handler.Note;
+>>>>>>> e0dad1df85a7a2497f229a37ecf918676420722e
 
 import org.junit.Test;
 
 import java.util.List;
+<<<<<<< HEAD
+
+import hyphenator.Note;
+import hyphenator.MatchScale;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+=======
+import java.util.ArrayList;
+import java.util.Arrays;
+>>>>>>> e0dad1df85a7a2497f229a37ecf918676420722e
 
 import properties.ScaleEnum;
 
@@ -28,8 +42,8 @@ public class MatchScaleTest {
 	@Test
 	public void parseScaleTest(){
 		String notes = ScaleEnum.CMAJ.getScale();
-		ArrayList<Note> listOfNotes = new ArrayList<Note>();
-		ArrayList<String> notesArray = new ArrayList<String>();
+		List<Note> listOfNotes = new ArrayList<Note>();
+		List<String> notesArray = new ArrayList<String>();
 		List<String> newNotesArray = new ArrayList<String>();
 		
 		notesArray.add("C");
@@ -44,6 +58,89 @@ public class MatchScaleTest {
 		
 		newNotesArray = matchScale.parseScale(notes);
 		
-		assertArrayEquals(notesArray, newNotesArray);
+		int i = 0;
+		for(String note : notesArray){
+			assertEquals(note, newNotesArray.get(i));
+			
+			i++;
+		}
+	}
+	
+	
+	
+	@Test
+	public void getTextScaleTest(){
+		List<Note> listOfNotes = new ArrayList<Note>();
+		MatchScale matchScale = new MatchScale(listOfNotes);
+
+		List<String> scale = new ArrayList<String>();
+		List<String> textListOfNotes = new ArrayList<String>();
+				
+		textListOfNotes.add("A"); 
+		textListOfNotes.add("D");
+		textListOfNotes.add("C");		
+		textListOfNotes.add("D");		
+		textListOfNotes.add("E");		
+		textListOfNotes.add("F");		
+		textListOfNotes.add("G");		
+		textListOfNotes.add("E");		
+		textListOfNotes.add("B");		
+		textListOfNotes.add("C");		
+		textListOfNotes.add("C");		
+		textListOfNotes.add("G");		
+		textListOfNotes.add("B");		
+		textListOfNotes.add("D");		
+
+		
+		for(String noteName : textListOfNotes){
+			Note note = new Note(noteName);
+			listOfNotes.add(note);
+		}
+		
+		scale = matchScale.getTextScale();
+		
+		assertEquals("A", scale.get(0));
+		assertEquals("B", scale.get(1));
+		assertEquals("C", scale.get(2));
+		assertEquals("D", scale.get(3));
+		assertEquals("E", scale.get(4));
+		assertEquals("F", scale.get(5));
+		assertEquals("G", scale.get(6));
+
+	}
+	
+	@Test
+	public void getMatchedScaleTest(){
+		List<Note> listOfNotes = new ArrayList<Note>();
+		
+		List<String> textListOfNotes = new ArrayList<String>();
+		
+		textListOfNotes.add("A"); 
+		textListOfNotes.add("D");
+		textListOfNotes.add("C");
+		textListOfNotes.add("D");
+		textListOfNotes.add("E");
+		textListOfNotes.add("F");
+		textListOfNotes.add("G");
+		textListOfNotes.add("E");
+		textListOfNotes.add("B");
+		textListOfNotes.add("C");
+		textListOfNotes.add("C");
+		textListOfNotes.add("G");
+		textListOfNotes.add("B");
+		textListOfNotes.add("D");
+		
+		for(String noteName : textListOfNotes){
+			Note note = new Note(noteName);
+			listOfNotes.add(note);
+		}
+		
+		MatchScale matchScale = new MatchScale(listOfNotes);
+		
+		String scale = new String();
+		
+		scale = matchScale.getMatchedScale();
+		
+		assertEquals("Cmaj", scale);
 	}
 }

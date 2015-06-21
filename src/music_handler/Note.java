@@ -9,6 +9,7 @@ public class Note {
 	
 	public Note(String key) {
 		setKey(key);
+		setIntonation("");
 		setDefaultOctave();
 	}
 
