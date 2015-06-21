@@ -125,4 +125,9 @@ public class LemmatizedText extends Text {
 			else
 				this.positiveness = "negative";
 	}
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+		LemmatizedText lt = new LemmatizedText("/home/luiza/workspace/player/tcp_tp/data/text/test.txt");
+		System.out.println(lt.getLemmatizedText());
+	}
 }
