@@ -1,7 +1,11 @@
-package text_handler;
+package text_handler.processer;
 
 import java.io.IOException;
 import java.util.List;
+
+import text_handler.corpus.MobyCorpusLoader;
+import text_handler.text.LemmatizedText;
+import text_handler.text.Syllable;
 
 public class TextProcesser {
 	

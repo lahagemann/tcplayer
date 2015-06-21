@@ -1,4 +1,4 @@
-package hyphenator;
+package music_handler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import music_handler.Note;
 import properties.ScaleEnum;
 
 public class MatchScale {

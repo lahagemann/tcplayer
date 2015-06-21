@@ -1,4 +1,4 @@
-package text_handler;
+package text_handler.text;
 
 import java.util.ArrayList;
 import java.util.List;

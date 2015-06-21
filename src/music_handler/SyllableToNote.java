@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import text_handler.Syllable;
+import text_handler.text.Syllable;
 
 public class SyllableToNote {
 	
