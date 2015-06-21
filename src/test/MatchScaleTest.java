@@ -12,8 +12,6 @@ import java.util.ArrayList;
 
 import properties.ScaleEnum;
 
-
-
 public class MatchScaleTest {
 	
 	@Test
