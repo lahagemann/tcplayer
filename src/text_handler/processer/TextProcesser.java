@@ -14,15 +14,15 @@ public class TextProcesser {
 	private LemmatizedText text;
 	private List<Syllable> syllabifiedText;
 	
-	public TextProcesser(String filePath) throws IOException {
-		this.mobyPath = "/data/corpus/mhyph.txt";
+	public TextProcesser(String filePath) throws IOException, InterruptedException {
+		this.mobyPath = System.getProperty("user.dir")+"/data/corpus/mhyph.txt";
 		setup(filePath);
 	}
 		
 	
 	/* SETUP */
 	
-	public void setup(String filePath) throws IOException {
+	public void setup(String filePath) throws IOException, InterruptedException {
 		setupMoby();
 		setupText(filePath);
 	}
@@ -32,7 +32,7 @@ public class TextProcesser {
 	}
 	
 	
-	private void setupText(String path) throws IOException {
+	private void setupText(String path) throws IOException, InterruptedException {
 		this.text = new LemmatizedText(path);
 	}
 
