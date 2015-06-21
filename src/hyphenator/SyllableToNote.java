@@ -2,18 +2,17 @@ package hyphenator;
 
 import java.util.Properties;
 
+import properties.AlphabetEnum;
+
 public class SyllableToNote {
 	
 	
-	//deixar isso menos feio pfv
 	public Note convert(Syllable syllable) {
 		if(containsAnyDefaultNote(syllable)) {
 			//find number of notes & create double/single note
 		}
 		else {
-			//arrumar as properties
-			Properties alphabetCorrespondent = new Properties();
-			String note = alphabetCorrespondent.getProperty(syllable.firstLetter());
+			String note = AlphabetEnum.valueOf(syllable.firstLetter()).getCorrespondent();
 			String intonation = "";
 			if(syllable.endsWithConsonant())
 				intonation = "#";
