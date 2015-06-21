@@ -2,8 +2,6 @@ package music_handler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-
 import properties.AlphabetEnum;
 import text_handler.text.Syllable;
 
@@ -20,24 +18,32 @@ public class SyllableToNote {
 		return music;
 	}
 	
-	//deixar isso menos feio pfv
 	private Note convert(Syllable syllable) {
+		Note note = null;
+		
 		if(containsAnyDefaultNote(syllable)) {
-			String note = getDefaultNote(syllable);
-			if(note != null)
-				return new Note(note);
-			else
-				return null;
+			String noteName = getDefaultNote(syllable);
+			if(noteName != null)
+				note = new Note(noteName);
 		}
 		else {
-			String note = AlphabetEnum.valueOf(syllable.firstLetter()).getCorrespondent();
+			String noteName = AlphabetEnum.valueOf(syllable.firstLetter()).getCorrespondent();
 			String intonation = "";
-			if(syllable.endsWithConsonant())
-				intonation = "#";
-			else
-				intonation = "b";
-			return new Note(note,intonation);
+			
+			intonation = getNoteIntonation(syllable);
+			
+			note =  new Note(noteName,intonation);
 		}
+		return note;
+	}
+
+	private String getNoteIntonation(Syllable syllable) {
+		String intonation;
+		if(syllable.endsWithConsonant())
+			intonation = "#";
+		else
+			intonation = "b";
+		return intonation;
 	}
 
 	private String getDefaultNote(Syllable syllable) {
@@ -59,7 +65,7 @@ public class SyllableToNote {
 	private boolean containsAnyDefaultNote(Syllable syllable) {
 		String syl = syllable.getSyllable();
 		if(syl.contains("a") || syl.contains("b") || syl.contains("c") || 
-				syl.contains("d") || syl.contains("e") || syl.contains("f") || syl.contains("g") )
+				syl.contains("d") || syl.contains("e") || syl.contains("f") || syl.contains("g"))
 			return true;
 		return false;
 	}
