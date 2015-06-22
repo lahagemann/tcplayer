@@ -51,13 +51,4 @@ public class TextProcesser {
 	public void process() {
 		this.syllabifiedText = this.moby.split(this.text);
 	}
-
-	
-	public static void main(String[] args) throws IOException, InterruptedException {
-		TextProcesser tp = new TextProcesser("/home/luiza/workspace/player/tcp_tp/data/text/test.txt");
-		tp.process();
-		for (Syllable syl : tp.syllabifiedText) {
-			System.out.println(syl.getSyllable());
-		}
-	}
 }

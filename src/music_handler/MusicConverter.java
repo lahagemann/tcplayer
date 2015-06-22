@@ -40,7 +40,6 @@ public class MusicConverter {
 	private void setupSong() {
 		SyllableToNote converter = new SyllableToNote();
 		this.song = converter.convertText(this.text);
-		
 	}
 
 	private void setupScale(List<Syllable> text) {
@@ -50,14 +49,9 @@ public class MusicConverter {
 	
 	public String convert() {
 		String music = "K"+this.scale+" ";
-		for (Note note : song) {
-			music.concat(note.getKey());
+		for (Note note : this.song) {
+			music += (note.toString() + " ");
 		}
 		return music;
 	}
-	
-	
-	
-	
-
 }

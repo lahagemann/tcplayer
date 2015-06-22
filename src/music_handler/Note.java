@@ -56,7 +56,10 @@ public class Note {
 	
 	@Override
 	public String toString() {
-		return this.getKey() + this.getIntonation() + this.getOctave();
+		if(this.key.equals("R"))
+			return this.getKey();
+		else
+			return this.getKey() + this.getOctave();
 	}
 
 

@@ -44,7 +44,7 @@ public class MatchScale {
 		int highestMatch = 0;
 		String matchedScale = "";
 		
-		if(this.positiveness.equals("positive")) {
+		if(textIsPositive()) {
 			for (MajorScaleEnum scale : MajorScaleEnum.values()) {
 				List<String> parsedScale = parseScale(scale.getScale());
 				int numberOfMatches = compareScales(parsedScale, textScale);
@@ -67,6 +67,10 @@ public class MatchScale {
 			}
 		}
 		return matchedScale;
+	}
+
+	private boolean textIsPositive() {
+		return this.positiveness.equals("positive");
 	}
 	
 	private List<String> getTextScale() {
@@ -93,7 +97,8 @@ public class MatchScale {
 
 	private List<Integer> selectMostUsedNotes(List<Integer> noteScores) {
 		Collections.sort(noteScores, Collections.reverseOrder());
-		noteScores = noteScores.subList(0, 6);
+		if(noteScores.size() >= 7)
+			noteScores = noteScores.subList(0, 6);
 		return noteScores;
 	}
 	

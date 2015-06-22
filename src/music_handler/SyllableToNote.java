@@ -12,21 +12,35 @@ public class SyllableToNote {
 	public List<Note> convertText(List<Syllable> text) {
 		List<Note> music = new ArrayList<Note>();
 		Note previous = null;
+		
 		for (Syllable syllable : text) {
 			Note note = convert(syllable);
-			if(previous!=null) {
-				int octave = setNewOctave(note,previous);
-				note.setOctave(octave);
-				music.add(note);
-				
-			}
+			if(previous!=null && !isPause(note)) 
+				note.setOctave(produceNewOctave(note,previous));
+			
+			music.add(note);
+			
+			if(!isPause(note))
+				previous = note;
 		}
 		return music;
 	}
+
+	private boolean isPause(Note note) {
+		return note.getKey().equals("R");
+	}
 	
-	private int setNewOctave(Note note, Note previous) {
-		// TODO Auto-generated method stub
-		return 0;
+	private int produceNewOctave(Note note, Note previous) {
+		//this only works because the key value is a single char as a string. it would not work otherwise.
+		int asciiCodeForCurrentNote = (int) note.getKey().charAt(0);
+		int asciiCodeForPreviousNote = (int) previous.getKey().charAt(0);
+		
+		if(asciiCodeForCurrentNote - asciiCodeForPreviousNote > 3)
+			return note.getOctave()+1;
+		if(asciiCodeForCurrentNote - asciiCodeForPreviousNote < -3)
+			return note.getOctave()-1;
+		
+		return note.getOctave();
 	}
 
 	private Note convert(Syllable syllable) {
@@ -35,18 +49,11 @@ public class SyllableToNote {
 		if(syllable.getSyllable().matches("\\W"))
 			return new Note("R");
 		
-		if(containsAnyDefaultNote(syllable)) {
-			String noteName = getDefaultNote(syllable);
-			if(noteName != null)
-				note = new Note(noteName);
-		}
+		if(containsAnyDefaultNote(syllable))
+			note = new Note(getDefaultNote(syllable));
 		else {
-			String noteName = AlphabetEnum.valueOf(syllable.firstLetter()).getCorrespondent();
-			String intonation = "";
-			
-			intonation = getNoteIntonation(syllable);
-			
-			note =  new Note(noteName,intonation);
+			String noteName = AlphabetEnum.valueOf(syllable.firstLetter().toUpperCase()).getCorrespondent();
+			note =  new Note(noteName,getNoteIntonation(syllable));
 		}
 		return note;
 	}
@@ -83,4 +90,5 @@ public class SyllableToNote {
 			return true;
 		return false;
 	}
+	
 }
