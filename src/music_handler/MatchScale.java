@@ -7,17 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import properties.ScaleEnum;
-
-
-
+import properties.MajorScaleEnum;
+import properties.MinorScaleEnum;
 
 public class MatchScale {
 	
-	List<Note> listOfNotes;
+	private List<Note> listOfNotes;
+	private String positiveness;
 	
-	public MatchScale(List<Note> listOfNotes) {
+	public MatchScale(List<Note> listOfNotes, String positiveness) {
 		setListOfNotes(listOfNotes);
+		setPositiveness(positiveness);
 	}
 	
 	/* GETTERS & SETTERS */
@@ -30,6 +30,10 @@ public class MatchScale {
 		this.listOfNotes = listOfNotes;
 	}
 	
+	public void setPositiveness(String positiveness) {
+		this.positiveness = positiveness;
+	}
+	
 	
 	/* CLASS METHODS */
 	
@@ -40,19 +44,32 @@ public class MatchScale {
 		int highestMatch = 0;
 		String matchedScale = "";
 		
-		for (ScaleEnum scale : ScaleEnum.values()) {
-			List<String> parsedScale = parseScale(scale.getScale());
-			int numberOfMatches = compareScales(parsedScale, textScale);
-			
-			if(numberOfMatches > highestMatch) {
-				highestMatch = numberOfMatches;
-				matchedScale = scale.getNameOfScale();
+		if(this.positiveness.equals("positive")) {
+			for (MajorScaleEnum scale : MajorScaleEnum.values()) {
+				List<String> parsedScale = parseScale(scale.getScale());
+				int numberOfMatches = compareScales(parsedScale, textScale);
+				
+				if(numberOfMatches > highestMatch) {
+					highestMatch = numberOfMatches;
+					matchedScale = scale.getNameOfScale();
+				}
+			}
+		}
+		else {
+			for (MinorScaleEnum scale : MinorScaleEnum.values()) {
+				List<String> parsedScale = parseScale(scale.getScale());
+				int numberOfMatches = compareScales(parsedScale, textScale);
+				
+				if(numberOfMatches > highestMatch) {
+					highestMatch = numberOfMatches;
+					matchedScale = scale.getNameOfScale();
+				}
 			}
 		}
 		return matchedScale;
 	}
 	
-	public List<String> getTextScale() {
+	private List<String> getTextScale() {
 		List<String> scale = new ArrayList<String>();
 		
 		Map<String,Integer> scores = getNoteOccurrences(this.listOfNotes);
@@ -70,7 +87,7 @@ public class MatchScale {
 		return scale;
 	}
 	
-	public List<String> parseScale(String listOfKeys){
+	private List<String> parseScale(String listOfKeys){
 		return Arrays.asList(listOfKeys.split(" "));
 	}
 
@@ -94,7 +111,7 @@ public class MatchScale {
 		return scores;
 	}
 	
-	public int compareScales(List<String> trueScale, List<String> scaleFromText) {
+	private int compareScales(List<String> trueScale, List<String> scaleFromText) {
 		int matches = 0;
 		for (String note : scaleFromText) 
 			if(trueScale.contains(note))

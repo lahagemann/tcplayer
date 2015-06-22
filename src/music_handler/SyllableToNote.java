@@ -11,16 +11,29 @@ public class SyllableToNote {
 	
 	public List<Note> convertText(List<Syllable> text) {
 		List<Note> music = new ArrayList<Note>();
+		Note previous = null;
 		for (Syllable syllable : text) {
 			Note note = convert(syllable);
-			if(note != null)
+			if(previous!=null) {
+				int octave = setNewOctave(note,previous);
+				note.setOctave(octave);
 				music.add(note);
+				
+			}
 		}
 		return music;
 	}
 	
+	private int setNewOctave(Note note, Note previous) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	private Note convert(Syllable syllable) {
 		Note note = null;
+		
+		if(syllable.getSyllable().matches("\\W"))
+			return new Note("R");
 		
 		if(containsAnyDefaultNote(syllable)) {
 			String noteName = getDefaultNote(syllable);

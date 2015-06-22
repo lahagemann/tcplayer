@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import text_handler.text.LemmatizedText;
 import text_handler.text.Syllable;
 import text_handler.text.Text;
 
@@ -93,17 +95,47 @@ public class MobyCorpusLoader {
 		return false;
 	}
 	
-	public List<Syllable> split(Text text) {
+	public List<Syllable> split(LemmatizedText text) {
 		List<Syllable> syllabifiedText = new ArrayList<Syllable>();
 		
-		for (String word : text.getOriginalText()) {
+		for (String word : text.getLemmatizedText()) {
 			if(syllableDictionary.containsKey(word))
 				syllabifiedText.addAll(syllableDictionary.get(word));
 			else {
-				//definir criterios de separação
+				if(word.length() > 4) 
+					syllabifiedText.addAll(splitWordNotInCorpus(word));
+				else
+					syllabifiedText.add(new Syllable(word));
 			}
 		}
 		
 		return syllabifiedText;
+	}
+	
+	public List<Syllable> split(String word) {
+		List<Syllable> syllabifiedText = new ArrayList<Syllable>();
+		if(syllableDictionary.containsKey(word))
+			syllabifiedText.addAll(syllableDictionary.get(word));
+		else {
+			if(word.length() > 4) 
+				syllabifiedText.addAll(splitWordNotInCorpus(word));
+			else
+				syllabifiedText.add(new Syllable(word));
+		}
+		return syllabifiedText;
+	}
+
+	private List<Syllable> splitWordNotInCorpus(String word) {
+		List<Syllable> syllables = new ArrayList<Syllable>();
+		int splitIndex = word.length()/2;
+		if(word.length()/2 < 4) {
+			syllables.add(new Syllable(word.substring(0, splitIndex)));
+			syllables.add(new Syllable(word.substring(splitIndex, word.length())));
+		}
+		else {
+			syllables.addAll(splitWordNotInCorpus(word.substring(0, splitIndex)));
+			syllables.addAll(splitWordNotInCorpus(word.substring(splitIndex, word.length())));
+		}
+		return syllables;
 	}
 }

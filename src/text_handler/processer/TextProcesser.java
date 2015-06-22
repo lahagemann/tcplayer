@@ -31,6 +31,10 @@ public class TextProcesser {
 		return syllabifiedText;
 	}
 	
+	public String getPositiveness() {
+		return this.text.getPositiveness();
+	}
+	
 	
 	private void setupText(String path) throws IOException, InterruptedException {
 		this.text = new LemmatizedText(path);
@@ -48,4 +52,12 @@ public class TextProcesser {
 		this.syllabifiedText = this.moby.split(this.text);
 	}
 
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+		TextProcesser tp = new TextProcesser("/home/luiza/workspace/player/tcp_tp/data/text/test.txt");
+		tp.process();
+		for (Syllable syl : tp.syllabifiedText) {
+			System.out.println(syl.getSyllable());
+		}
+	}
 }
