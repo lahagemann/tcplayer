@@ -31,9 +31,9 @@ import ui.dialogs.NLTKNotFoundDialogBox;
 public class ui {
 
 	private JFrame frmTcplayer;
-	private TextProcesser processer;
-	private MusicConverter converter;
-	private Play player;
+	public TextProcesser processer;
+	public MusicConverter converter;
+	public Play player;
 
 	/**
 	 * Launch the application.
@@ -96,8 +96,7 @@ public class ui {
 				File f = fileChooser.getSelectedFile();
 				file.setText(f.getAbsolutePath());
 				try {
-					processer = new TextProcesser(f.getAbsolutePath());
-					System.out.println(processer.getSyllabifiedText().size());
+					processer = new TextProcesser(file.getText());
 				} catch (IOException | InterruptedException e1) {
 					FileNotFoundDialog dialog = new FileNotFoundDialog();
 				}
