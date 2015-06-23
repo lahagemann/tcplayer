@@ -73,9 +73,28 @@ public class ui {
 		frmTcplayer.setBounds(100, 100, 450, 300);
 		frmTcplayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		PlayButton play = new PlayButton(player);
-		PauseButton pause = new PauseButton(player);
-		StopButton stop = new StopButton(player);
+		PlayButton play = new PlayButton();
+		play.button.addActionListener((new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					player.play();
+				} catch (InvalidMidiDataException | MidiUnavailableException e1) {
+					InvalidMidiDialog i = new InvalidMidiDialog();
+				}
+			}
+		}));
+		PauseButton pause = new PauseButton();
+		pause.button.addActionListener((new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.pause();
+			}
+		}));
+		StopButton stop = new StopButton();
+		stop.button.addActionListener((new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player.pause();
+			}
+		}));
 		
 		frmTcplayer.getContentPane().setLayout(null);
 		frmTcplayer.getContentPane().add(play.button);

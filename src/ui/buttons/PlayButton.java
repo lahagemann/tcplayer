@@ -18,11 +18,10 @@ public class PlayButton {
 	
 	public JButton button;
 	
-	public PlayButton(Play play) {
+	public PlayButton() {
 		this.button = new JButton(""); 
 		setIcon();
 		setPositionAndSize();
-		setAction(play);
 	}
 	
 	private void setIcon() {
@@ -43,16 +42,4 @@ public class PlayButton {
 		this.button.setBounds(200, 177, 50, 50);
 	}
 	
-	private void setAction(Play play) {
-		this.button.addActionListener((new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					play.play();
-				} catch (InvalidMidiDataException | MidiUnavailableException e1) {
-					InvalidMidiDialog i = new InvalidMidiDialog();
-				}
-			}
-		}));
-	}
-
 }

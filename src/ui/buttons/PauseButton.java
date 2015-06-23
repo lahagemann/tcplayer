@@ -16,11 +16,10 @@ public class PauseButton {
 	
 	public JButton button;
 	
-	public PauseButton(Play play) {
+	public PauseButton() {
 		this.button = new JButton(""); 
 		setIcon();
 		setPositionAndSize();
-		setAction(play);
 	}
 
 
@@ -42,12 +41,5 @@ public class PauseButton {
 		this.button.setAlignmentX(Component.RIGHT_ALIGNMENT);
 	}
 	
-	private void setAction(Play play) {
-		this.button.addActionListener((new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				play.pause();
-			}
-		}));
-	}
 
 }

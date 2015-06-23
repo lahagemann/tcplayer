@@ -15,11 +15,10 @@ public class StopButton {
 	
 	public JButton button;
 	
-	public StopButton(Play play) {
+	public StopButton() {
 		this.button = new JButton(""); 
 		setIcon();
 		setPositionAndSize();
-		setAction(play);
 	}
 	
 	private void setIcon() {
@@ -41,12 +40,4 @@ public class StopButton {
 	}
 	
 	
-	
-	private void setAction(Play play) {
-		this.button.addActionListener((new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				play.pause();
-			}
-		}));
-	}
 }
