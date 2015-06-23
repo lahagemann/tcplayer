@@ -43,8 +43,8 @@ public class MusicConverter {
 	}
 
 	private void setupScale(List<Syllable> text) {
-		MatchScale matcher = new MatchScale(this.song, this.positiveness);
-		this.scale = matcher.getMatchedScale();
+		Scale matcher = new Scale(this.song, this.positiveness);
+		this.scale = matcher.getScale();
 	}
 	
 	public String convert() {

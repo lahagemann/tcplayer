@@ -10,12 +10,12 @@ import java.util.Map;
 import properties.MajorScaleEnum;
 import properties.MinorScaleEnum;
 
-public class MatchScale {
+public class Scale {
 	
 	private List<Note> listOfNotes;
 	private String positiveness;
 	
-	public MatchScale(List<Note> listOfNotes, String positiveness) {
+	public Scale(List<Note> listOfNotes, String positiveness) {
 		setListOfNotes(listOfNotes);
 		setPositiveness(positiveness);
 	}
@@ -38,7 +38,7 @@ public class MatchScale {
 	/* CLASS METHODS */
 	
 	
-	public String getMatchedScale() {
+	public String getScale() {
 		List<String> textScale = getTextScale();
 		
 		

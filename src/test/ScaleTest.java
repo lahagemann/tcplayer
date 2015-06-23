@@ -1,7 +1,7 @@
 package test;
 
 import static org.junit.Assert.*;
-import music_handler.MatchScale;
+import music_handler.Scale;
 import music_handler.Note;
 
 import org.junit.Test;
@@ -9,14 +9,14 @@ import org.junit.Test;
 import java.util.List;
 import java.util.ArrayList;
 
-public class MatchScaleTest {
+public class ScaleTest {
 	
 	@Test
 	public void createMatchScaleTest(){
 		ArrayList<Note> listOfNotes = new ArrayList<Note>();
 		String positivness = "positive";
 		
-		MatchScale matchScale = new MatchScale(listOfNotes, positivness);
+		Scale matchScale = new Scale(listOfNotes, positivness);
 		
 		assertNotNull(matchScale);	
 	}
@@ -48,11 +48,11 @@ public class MatchScaleTest {
 			listOfNotes.add(note);
 		}
 		
-		MatchScale matchScale = new MatchScale(listOfNotes, positiveness);
+		Scale matchScale = new Scale(listOfNotes, positiveness);
 		
 		String scale = new String();
 		
-		scale = matchScale.getMatchedScale();
+		scale = matchScale.getScale();
 		
 		assertEquals("Cmaj", scale);
 	}
