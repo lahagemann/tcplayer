@@ -34,6 +34,7 @@ public class ui {
 	public TextProcesser processer;
 	public MusicConverter converter;
 	public Play player;
+	public String song;
 
 	/**
 	 * Launch the application.
@@ -97,6 +98,7 @@ public class ui {
 				file.setText(f.getAbsolutePath());
 				try {
 					processer = new TextProcesser(file.getText());
+					processer.process();
 				} catch (IOException | InterruptedException e1) {
 					FileNotFoundDialog dialog = new FileNotFoundDialog();
 				}
@@ -116,8 +118,10 @@ public class ui {
 			public void actionPerformed(ActionEvent e) {
 				if(processer!=null) {
 					converter = new MusicConverter(processer.getSyllabifiedText(), processer.getPositiveness());
+					song = converter.convert();
 					try {
-						player = new Play(converter.convert(),processer.getFileName());
+						
+						player = new Play(song);
 					} catch (IOException e1) {
 						FileNotFoundDialog d = new FileNotFoundDialog();
 					} catch (MidiUnavailableException e1) {
