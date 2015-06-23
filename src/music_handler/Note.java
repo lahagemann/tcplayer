@@ -2,6 +2,7 @@ package music_handler;
 
 public class Note {
 	
+	private static final String JFUGUE_PAUSE_CODE = "R";
 	private String key;
 	private String intonation;
 	private int octave;
@@ -56,7 +57,7 @@ public class Note {
 	
 	@Override
 	public String toString() {
-		if(this.key.equals("R"))
+		if(this.key.equals(JFUGUE_PAUSE_CODE))
 			return this.getKey();
 		else
 			return this.getKey() + this.getOctave();

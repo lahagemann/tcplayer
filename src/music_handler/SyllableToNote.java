@@ -9,6 +9,9 @@ import text_handler.text.Syllable;
 public class SyllableToNote {
 	
 	
+	private static final String JFUGUE_PAUSE_CODE = "R";
+	private static final String PUNCTUATION = "\\W";
+
 	public List<Note> convertText(List<Syllable> text) {
 		List<Note> music = new ArrayList<Note>();
 		Note previous = null;
@@ -27,7 +30,7 @@ public class SyllableToNote {
 	}
 
 	private boolean isPause(Note note) {
-		return note.getKey().equals("R");
+		return note.getKey().equals(JFUGUE_PAUSE_CODE);
 	}
 	
 	private int produceNewOctave(Note note, Note previous) {
@@ -46,8 +49,8 @@ public class SyllableToNote {
 	private Note convert(Syllable syllable) {
 		Note note = null;
 		
-		if(syllable.getSyllable().matches("\\W"))
-			return new Note("R");
+		if(syllable.getSyllable().matches(PUNCTUATION))
+			return new Note(JFUGUE_PAUSE_CODE);
 		
 		if(containsAnyDefaultNote(syllable))
 			note = new Note(getDefaultNote(syllable));

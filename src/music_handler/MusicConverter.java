@@ -13,8 +13,8 @@ public class MusicConverter {
 	private List<Note> song;
 	
 	public MusicConverter(List<Syllable> text, String positiveness) {
-		setText(text);
-		setPositiveness(positiveness);
+		this.setText(text);
+		this.setPositiveness(positiveness);
 		setup();
 	}
 

@@ -2,6 +2,8 @@ package text_handler.text;
 
 public class Syllable {
 	
+	private static final String CONSONANT = "C";
+	private static final String VOWEL = "V";
 	private String syllable;
 	
 	public Syllable(String syllable) {
@@ -32,9 +34,9 @@ public class Syllable {
 		if(syllableExists()) {
 			for (int i = 0; i < syllable.length(); i++) {
 				if(isVowel(syllable.charAt(i)))
-					pattern.concat("V");
+					pattern.concat(VOWEL);
 				else
-					pattern.concat("C");
+					pattern.concat(CONSONANT);
 			}			
 		}
 		return pattern;
