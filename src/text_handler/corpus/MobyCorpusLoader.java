@@ -22,6 +22,7 @@ public class MobyCorpusLoader {
 	 * with the whole word a key and the splitted word as its value
 	 */
 	
+	private static final String SYLLABLE_SEPARATOR = "¥";
 	private Map<String,List<Syllable>> syllableDictionary;
 	private String mobyFilePath;
 	
@@ -72,7 +73,7 @@ public class MobyCorpusLoader {
 	}
 	
 	private void addWordToDictionary(String word) {
-		String wordWithoutSeparator = word.replace("¥", "");		
+		String wordWithoutSeparator = word.replace(SYLLABLE_SEPARATOR, "");		
 		List<Syllable> syllables = separate(word);
 		syllableDictionary.put(wordWithoutSeparator, syllables);
 	}
@@ -83,14 +84,14 @@ public class MobyCorpusLoader {
 		if(isMonosyllable(word)) 
 			splittedWord.add(new Syllable(word));
 		else
-			for (String syllable : word.split("¥"))
+			for (String syllable : word.split(SYLLABLE_SEPARATOR))
 				splittedWord.add(new Syllable(syllable));
 		
 		return splittedWord;
 	}
 	
 	private boolean isMonosyllable(String word) {
-		if(word.contains("¥"))
+		if(word.contains(SYLLABLE_SEPARATOR))
 			return true;
 		return false;
 	}

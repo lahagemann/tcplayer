@@ -10,12 +10,12 @@ import java.util.Map;
 import properties.MajorScaleEnum;
 import properties.MinorScaleEnum;
 
-public class MatchScale {
+public class Scale {
 	
 	private List<Note> listOfNotes;
 	private String positiveness;
 	
-	public MatchScale(List<Note> listOfNotes, String positiveness) {
+	public Scale(List<Note> listOfNotes, String positiveness) {
 		setListOfNotes(listOfNotes);
 		setPositiveness(positiveness);
 	}
@@ -38,32 +38,44 @@ public class MatchScale {
 	/* CLASS METHODS */
 	
 	
-	public String getMatchedScale() {
+	public String getScale() {
 		List<String> textScale = getTextScale();
 		
-		int highestMatch = 0;
+		
 		String matchedScale = "";
 		
 		if(textIsPositive()) {
-			for (MajorScaleEnum scale : MajorScaleEnum.values()) {
-				List<String> parsedScale = parseScale(scale.getScale());
-				int numberOfMatches = compareScales(parsedScale, textScale);
-				
-				if(numberOfMatches > highestMatch) {
-					highestMatch = numberOfMatches;
-					matchedScale = scale.getNameOfScale();
-				}
-			}
+			matchedScale = findMajorScale(textScale, matchedScale);
 		}
 		else {
-			for (MinorScaleEnum scale : MinorScaleEnum.values()) {
-				List<String> parsedScale = parseScale(scale.getScale());
-				int numberOfMatches = compareScales(parsedScale, textScale);
-				
-				if(numberOfMatches > highestMatch) {
-					highestMatch = numberOfMatches;
-					matchedScale = scale.getNameOfScale();
-				}
+			matchedScale = findMinorScale(textScale, matchedScale);
+		}
+		return matchedScale;
+	}
+
+	private String findMinorScale(List<String> textScale, String matchedScale) {
+		int highestMatch = 0;
+		for (MinorScaleEnum scale : MinorScaleEnum.values()) {
+			List<String> parsedScale = parseScale(scale.getScale());
+			int numberOfMatches = compareScales(parsedScale, textScale);
+			
+			if(numberOfMatches > highestMatch) {
+				highestMatch = numberOfMatches;
+				matchedScale = scale.getNameOfScale();
+			}
+		}
+		return matchedScale;
+	}
+
+	private String findMajorScale(List<String> textScale, String matchedScale) {
+		int highestMatch = 0;
+		for (MajorScaleEnum scale : MajorScaleEnum.values()) {
+			List<String> parsedScale = parseScale(scale.getScale());
+			int numberOfMatches = compareScales(parsedScale, textScale);
+			
+			if(numberOfMatches > highestMatch) {
+				highestMatch = numberOfMatches;
+				matchedScale = scale.getNameOfScale();
 			}
 		}
 		return matchedScale;

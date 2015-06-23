@@ -9,6 +9,8 @@ import java.util.List;
 
 public class LemmatizedText extends Text {
 	
+	private static final String NEGATIVE = "negative";
+	private static final String POSITIVE = "positive";
 	private String lemmatizedFilePath;
 	private String emotionFilePath;
 	private String positiveness;
@@ -112,7 +114,7 @@ public class LemmatizedText extends Text {
 			while(file.ready()) {
 				String line = file.readLine().trim();
 				if(!line.matches("\\s")) {
-					if(line.equals("positive"))
+					if(line.equals(POSITIVE))
 						positives++;
 					else
 						negatives++;
@@ -121,9 +123,9 @@ public class LemmatizedText extends Text {
 			file.close();
 			
 			if(positives > negatives)
-				this.positiveness = "positive";
+				this.positiveness = POSITIVE;
 			else
-				this.positiveness = "negative";
+				this.positiveness = NEGATIVE;
 	}
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
