@@ -11,6 +11,7 @@ import javax.sound.midi.Sequencer;
 
 import org.jfugue.pattern.Pattern;
 import org.jfugue.player.ManagedPlayer;
+import org.jfugue.player.Player;
 
 public class Play {
 	
@@ -20,9 +21,15 @@ public class Play {
 	private Sequencer sequencer;
 	
 	public Play(String music, String fileName) throws IOException, MidiUnavailableException, InvalidMidiDataException {
+		this.player = new ManagedPlayer();
+		setMusic(music);
 		setMidiPath(fileName);
 		createMidiFile();
-		setSequencerWithMidiFile();
+		setSequencer();
+	}
+	
+	public void setMusic(String music) {
+		this.music = music.trim();
 	}
 	
 	public void setMidiPath(String fileName) {
@@ -34,11 +41,10 @@ public class Play {
 		pattern.save(new File(this.midiPath));
 	}
 	
-	private void setSequencerWithMidiFile() throws MidiUnavailableException, InvalidMidiDataException, IOException {
-		Sequencer sequencer = MidiSystem.getSequencer();
-		
-	    Sequence song = MidiSystem.getSequence(new File(this.midiPath));
-	    sequencer.setSequence(song);
+	private void setSequencer() throws MidiUnavailableException, InvalidMidiDataException {
+		this.sequencer = MidiSystem.getSequencer();
+	    Sequence song =  new Player().getSequence(music);
+	    this.sequencer.setSequence(song);
 	}
 	
 	public void play() throws InvalidMidiDataException, MidiUnavailableException {
@@ -57,5 +63,4 @@ public class Play {
 		if(player.isPlaying() || player.isPaused())
 			player.finish();
 	}
-
 }
