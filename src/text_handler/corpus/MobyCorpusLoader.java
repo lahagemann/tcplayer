@@ -4,14 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import text_handler.text.LemmatizedText;
 import text_handler.text.Syllable;
-import text_handler.text.Text;
 
 public class MobyCorpusLoader {
 	

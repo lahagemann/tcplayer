@@ -18,7 +18,6 @@ public class TextProcesser {
 		this.mobyPath = System.getProperty("user.dir")+"/data/corpus/mhyph.txt";
 		setup(filePath);
 	}
-		
 	
 	/* SETUP */
 	
@@ -35,6 +34,9 @@ public class TextProcesser {
 		return this.text.getPositiveness();
 	}
 	
+	public String getFileName() {
+		return this.text.originalFileName;
+	}
 	
 	private void setupText(String path) throws IOException, InterruptedException {
 		this.text = new LemmatizedText(path);

@@ -7,20 +7,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LemmatizedText extends Text {
+public class LemmatizedText {
 	
 	private static final String NEGATIVE = "negative";
 	private static final String POSITIVE = "positive";
 	private String lemmatizedFilePath;
 	private String emotionFilePath;
 	private String positiveness;
-	private String originalFileName;
+	public String originalFileName;
 	
 	private List<String> lemmatizedText;
 
 
 	public LemmatizedText(String originalFile) throws IOException, InterruptedException {
-		super(originalFile);
 		setOriginalFileName(originalFile);
 		lemmatize(originalFile);
 		setLemmatizedFilePath(originalFile);
